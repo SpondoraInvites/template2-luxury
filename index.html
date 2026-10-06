@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Mehjabin &amp; Arman — Wedding Invitation</title>
+  <meta name="description" content="With the blessings of Almighty Allah, we joyfully invite you to the wedding of Mehjabin & Arman — 12 February 2027, Dhaka." />
+
+  <!-- Social sharing (update per client) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mehjabin &amp; Arman — Wedding Invitation" />
+  <meta property="og:description" content="Join us as we celebrate — 12 February 2027, Dhaka." />
+  <meta name="theme-color" content="#f7f1e3" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Session flag: if this guest already opened the curtains and
+       config.js sets intro.oncePerSession, script.js honours this class
+       and lands them straight on the hero (no intro flash on paint). -->
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem("invite-opened") === "1") {
+          document.documentElement.classList.add("no-intro");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Restore the visitor's chosen language (EN/বাং) before first paint so
+       Bangla readers don't get a flash of English. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("invite-lang") === "bn") {
+          document.documentElement.lang = "bn";
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- EN: Playfair Display (display serif) · Imperial Script (names) · Jost (sans)
+       BN: Galada (names script) · Tiro Bangla (serif) · Anek Bangla (sans) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Imperial+Script&family=Jost:wght@300;400;500;600&family=Galada&family=Anek+Bangla:wght@300;400;500;600&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <noscript>
+    <style>
+      .intro { display: none !important; }
+      body.is-locked { overflow: auto !important; height: auto !important; }
+      .hero .fx, .reveal, .scribble path { opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
+    </style>
+  </noscript>
+</head>
+<body class="is-locked has-intro">
+
+  <!-- ================================================================
+       CURTAIN OPENING — soft champagne velvet drapes with a scalloped
+       gold valance. The tap that parts them also starts the music.
+       script.js orchestrates: is-opening → is-open → is-done.
+       ================================================================ -->
+  <div class="intro" id="intro">
+    <div class="intro__bloom" aria-hidden="true"></div>
+
+    <div class="intro__drape intro__drape--l" aria-hidden="true"></div>
+    <div class="intro__drape intro__drape--r" aria-hidden="true"></div>
+    <div class="intro__valance" aria-hidden="true"></div>
+
+    <div class="intro__content">
+      <p class="blessing intro__blessing" data-blessing>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+
+      <div class="crest crest--intro" aria-hidden="true">
+        <span class="crest__initials" data-initials>M&amp;A</span>
+      </div>
+
+      <p class="intro__eyebrow" data-i18n="introEyebrow">You are cordially invited to</p>
+      <h1 class="intro__names">
+        <span class="name-wrap">
+          <span class="script-name" data-name1>Mehjabin Karim</span>
+          <svg class="scribble" viewBox="0 0 200 22" aria-hidden="true" preserveAspectRatio="none">
+            <path class="scribble__pass scribble__pass--1" pathLength="1" d="M6 13 C42 4 78 19 112 10 S176 4 194 11" />
+            <path class="scribble__pass scribble__pass--2" pathLength="1" d="M12 16 C52 9 92 20 132 12 S182 8 190 14" />
+          </svg>
+        </span>
+        <span class="intro__amp script-amp" data-i18n="heroAmp">&amp;</span>
+        <span class="name-wrap">
+          <span class="script-name" data-name2>Arman Hossain</span>
+          <svg class="scribble" viewBox="0 0 200 22" aria-hidden="true" preserveAspectRatio="none">
+            <path class="scribble__pass scribble__pass--1" pathLength="1" d="M6 13 C42 4 78 19 112 10 S176 4 194 11" />
+            <path class="scribble__pass scribble__pass--2" pathLength="1" d="M12 16 C52 9 92 20 132 12 S182 8 190 14" />
+          </svg>
+        </span>
+      </h1>
+      <p class="intro__line" data-i18n="introLine">a celebration of love, laughter &amp; forever</p>
+
+      <button class="intro__open" id="introOpen" type="button" data-i18n="introEnter">Open the Invitation</button>
+    </div>
+
+    <button class="intro__skip" id="introSkip" type="button" data-i18n="introSkip">Skip</button>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <main class="invite" id="invite">
+
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="top">
+      <!-- Botanical corner sprays (water-lily line art) -->
+      <svg class="hero__spray hero__spray--tl" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path pathLength="1" d="M12 12 C60 40 110 96 150 170" />
+          <path pathLength="1" d="M60 66 c-26 -4 -40 -18 -44 -40 c24 2 38 14 44 40 Z" />
+          <path pathLength="1" d="M96 106 c24 -10 42 -8 58 6 c-18 12 -38 12 -58 -6 Z" />
+          <path pathLength="1" d="M126 148 c-8 -24 -4 -42 10 -56 c10 20 6 40 -10 56 Z" />
+        </g>
+      </svg>
+      <svg class="hero__spray hero__spray--br" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path pathLength="1" d="M228 228 C180 200 130 144 90 70" />
+          <path pathLength="1" d="M180 174 c26 4 40 18 44 40 c-24 -2 -38 -14 -44 -40 Z" />
+          <path pathLength="1" d="M144 134 c-24 10 -42 8 -58 -6 c18 -12 38 -12 58 6 Z" />
+          <path pathLength="1" d="M114 92 c8 24 4 42 -10 56 c-10 -20 -6 -40 10 -56 Z" />
+        </g>
+      </svg>
+
+      <div class="hero__inner">
+        <p class="blessing hero__blessing fx" style="--d:.15s" data-blessing>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+
+        <div class="crest hero__crest fx" style="--d:.3s" aria-hidden="true">
+          <svg class="crest__lily" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path pathLength="1" d="M24 7 C27 13 27 19 24 25 C21 19 21 13 24 7 Z" />
+            <path pathLength="1" d="M13 12 C17.5 15 21 20 23 26 C16.5 25 12.5 19 13 12 Z" />
+            <path pathLength="1" d="M35 12 C35.5 19 31.5 25 25 26 C27 20 30.5 15 35 12 Z" />
+            <path pathLength="1" d="M9 33 q7.5 4.5 15 0 q7.5 4.5 15 0" />
+            <path pathLength="1" d="M13 39 q5.5 3.5 11 0 q5.5 3.5 11 0" />
+          </svg>
+          <span class="crest__initials" data-initials>M&amp;A</span>
+        </div>
+
+        <p class="eyebrow hero__eyebrow fx" style="--d:.45s" data-i18n="eyebrowWedding">The Wedding of</p>
+
+        <h1 class="hero__names">
+          <span class="name-wrap fx" style="--d:.6s">
+            <span class="script-name" data-name1>Mehjabin Karim</span>
+            <svg class="scribble" viewBox="0 0 200 22" aria-hidden="true" preserveAspectRatio="none">
+              <path class="scribble__pass scribble__pass--1" pathLength="1" d="M6 13 C42 4 78 19 112 10 S176 4 194 11" />
+              <path class="scribble__pass scribble__pass--2" pathLength="1" d="M12 16 C52 9 92 20 132 12 S182 8 190 14" />
+            </svg>
+          </span>
+          <span class="hero__amp script-amp fx" style="--d:.75s" data-i18n="heroAmp">&amp;</span>
+          <span class="name-wrap fx" style="--d:.9s">
+            <span class="script-name" data-name2>Arman Hossain</span>
+            <svg class="scribble" viewBox="0 0 200 22" aria-hidden="true" preserveAspectRatio="none">
+              <path class="scribble__pass scribble__pass--1" pathLength="1" d="M6 13 C42 4 78 19 112 10 S176 4 194 11" />
+              <path class="scribble__pass scribble__pass--2" pathLength="1" d="M12 16 C52 9 92 20 132 12 S182 8 190 14" />
+            </svg>
+          </span>
+        </h1>
+
+        <div class="hero__rule fx" style="--d:1.05s" aria-hidden="true">
+          <span></span><i></i><span></span>
+        </div>
+
+        <p class="hero__date fx" style="--d:1.15s" data-date-display>Friday, 12 February 2027</p>
+        <p class="hero__place fx" style="--d:1.25s" data-city>Dhaka, Bangladesh</p>
+      </div>
+
+      <div class="hero__scroll fx" style="--d:1.5s" aria-hidden="true">
+        <span data-i18n="scroll">Scroll</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9 l6 6 l6 -6" />
+        </svg>
+      </div>
+    </header>
+
+    <!-- ============ WELCOME / FAMILIES ============ -->
+    <section class="welcome">
+      <div class="stitch" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <p class="eyebrow" data-i18n="welcomeEyebrow">Together with their families</p>
+
+      <div class="welcome__families">
+        <p class="welcome__parents" data-parents1>Daughter of Mr. Anwar Karim &amp; Mrs. Rubaba Karim</p>
+        <span class="welcome__divider" aria-hidden="true"></span>
+        <p class="welcome__parents" data-parents2>Son of Mr. Shahid Hossain &amp; Mrs. Farhana Hossain</p>
+      </div>
+
+      <p class="welcome__line" data-invite-line>
+        request the honour of your presence at their wedding celebration, as they
+        begin a beautiful new chapter together.
+      </p>
+
+      <p class="welcome__epigraph script" data-epigraph>Two souls, one garden — forever in bloom.</p>
+    </section>
+
+    <!-- ============ COUNTDOWN ============ -->
+    <section class="countdown" id="countdown">
+      <div class="countdown__panel">
+        <p class="eyebrow eyebrow--rose" data-i18n="saveTheDate">Save the Date</p>
+        <h2 class="section-title" data-i18n-html="countdownTitle">Counting Down<br /><em>to Forever</em></h2>
+
+        <div class="countdown__grid" role="timer" data-i18n-aria="countdownAria" aria-label="Countdown to the wedding">
+          <div class="cd-cell">
+            <span class="cd-cell__num" id="cdDays">—</span>
+            <span class="cd-cell__label" data-i18n="days">Days</span>
+          </div>
+          <div class="cd-cell">
+            <span class="cd-cell__num" id="cdHours">—</span>
+            <span class="cd-cell__label" data-i18n="hours">Hours</span>
+          </div>
+          <div class="cd-cell">
+            <span class="cd-cell__num" id="cdMinutes">—</span>
+            <span class="cd-cell__label" data-i18n="minutes">Minutes</span>
+          </div>
+          <div class="cd-cell">
+            <span class="cd-cell__num" id="cdSeconds">—</span>
+            <span class="cd-cell__label" data-i18n="seconds">Seconds</span>
+          </div>
+        </div>
+
+        <p class="countdown__note" data-countdown-note>until we say “Yes” — In Shaa Allah</p>
+      </div>
+    </section>
+
+    <!-- ============ OUR STORY ============ -->
+    <section class="story" id="story">
+      <p class="eyebrow eyebrow--rose" data-i18n="storyEyebrow">How It Began</p>
+      <h2 class="section-title" data-i18n-html="storyTitle">Our <em>Story</em></h2>
+
+      <div class="stitch" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <div class="story__timeline" id="storyList">
+        <span class="story__rail" id="storyRail" aria-hidden="true"></span>
+        <!-- Timeline chapters rendered from config.js -->
+        <article class="chapter">
+          <span class="chapter__dot" aria-hidden="true"></span>
+          <p class="chapter__label">Chapter One · 2021</p>
+          <h3 class="chapter__title">Where It Began</h3>
+          <p class="chapter__text">A friend's mehendi evening in Dhanmondi — too much roshomalai, one shared glance across the courtyard, and a conversation that lasted until the lights came on.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ EVENTS ============ -->
+    <section class="events" id="events">
+      <p class="eyebrow eyebrow--rose" data-i18n="whenWhere">When &amp; Where</p>
+      <h2 class="section-title" data-i18n-html="eventsTitle">The <em>Celebration</em></h2>
+
+      <div class="stitch" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <div class="events__list" id="eventList">
+        <!-- Event cards rendered from config.js -->
+        <article class="event-card">
+          <p class="event-card__tag">Wedding Ceremony</p>
+          <h3 class="event-card__name">Akd &amp; Reception</h3>
+          <p class="event-card__tagline">the blessed union, followed by dinner &amp; blessings</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="gallery" id="gallery">
+      <p class="eyebrow eyebrow--rose" data-i18n="galleryEyebrow">Captured Moments</p>
+      <h2 class="section-title" data-i18n-html="galleryTitle">Our <em>Gallery</em></h2>
+
+      <div class="stitch" aria-hidden="true"><span></span><i></i><span></span></div>
+
+      <div class="gallery__grid" id="galleryGrid">
+        <!-- Photo tiles rendered from config.js -->
+      </div>
+      <p class="gallery__hint" data-i18n="galleryHint">Tap a photo to view it close-up</p>
+    </section>
+
+    <!-- ============ CUSTOM SECTIONS (from config.js) ============ -->
+    <div class="custom" id="customSections">
+      <!-- Quote bands, text, card grids and FAQs — whatever the client dreams up -->
+    </div>
+
+    <!-- ============ MAP ============ -->
+    <section class="venue" id="venue">
+      <div class="venue__split">
+        <div class="venue__info">
+          <p class="eyebrow eyebrow--rose" data-i18n="theVenue">The Venue</p>
+          <h2 class="section-title" data-i18n-html="venueTitle">Find Us <em>There</em></h2>
+
+          <div class="stitch stitch--left" aria-hidden="true"><span></span><i></i><span></span></div>
+
+          <p class="venue__name" data-venue-name>The Ruby Hall, Pan Pacific Sonargaon</p>
+          <p class="venue__address" data-venue-address>107 Kazi Nazrul Islam Ave, Dhaka 1215</p>
+          <a class="link-btn venue__directions" data-directions href="https://www.google.com/maps/search/?api=1&query=Pan+Pacific+Sonargaon+Dhaka" target="_blank" rel="noopener" data-i18n="openInMaps">Open in Google Maps ↗</a>
+        </div>
+
+        <div class="venue__frame">
+          <iframe
+            id="venueMap"
+            title="Map to the wedding venue"
+            src="https://maps.google.com/maps?q=Pan%20Pacific%20Sonargaon%20Dhaka&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RSVP ============ -->
+    <section class="rsvp" id="rsvp">
+      <div class="rsvp__panel">
+        <p class="eyebrow eyebrow--rose" data-i18n="rsvpEyebrow">Will You Join Us?</p>
+        <h2 class="section-title" data-i18n-html="rsvpTitle">Kindly <em>Respond</em></h2>
+        <p class="rsvp__note" data-rsvp-note>Kindly respond by 1 February 2027 — the garden awaits your name.</p>
+
+        <form class="rsvp__form" id="rsvpForm" novalidate>
+          <div class="field">
+            <label class="field__label" for="rsvpName" data-i18n="yourName">Your Name</label>
+            <input class="field__input" type="text" id="rsvpName" name="name" autocomplete="name" data-i18n-attr="placeholder:namePlaceholder" placeholder="e.g. Rahim Uddin &amp; family" required />
+          </div>
+
+          <fieldset class="field field--choice">
+            <legend class="field__label" data-i18n="attendingQ">Will you be attending?</legend>
+            <div class="choice">
+              <label class="choice__opt">
+                <input type="radio" name="attending" value="yes" checked />
+                <span data-i18n="joyfullyYes">Joyfully, yes</span>
+              </label>
+              <label class="choice__opt">
+                <input type="radio" name="attending" value="no" />
+                <span data-i18n="regretfullyNo">Regretfully, no</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field" id="rsvpGuestsWrap">
+            <label class="field__label" for="rsvpGuests" data-i18n="guestsLabel">Number of Guests</label>
+            <select class="field__input" id="rsvpGuests" name="guests">
+              <option value="1">1 guest</option>
+              <option value="2" selected>2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+              <option value="5">5 guests</option>
+              <option value="6">6+ guests</option>
+            </select>
+          </div>
+
+          <fieldset class="field field--choice" id="rsvpEventsWrap">
+            <legend class="field__label" data-i18n="whichEvents">Which events will you attend?</legend>
+            <div class="choice" id="rsvpEvents">
+              <!-- Event checkboxes rendered from config.js -->
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label class="field__label" for="rsvpMessage">
+              <span data-i18n="messageLabel">A Message for the Couple</span>
+              <span class="field__optional" data-i18n="optionalLabel">(optional)</span>
+            </label>
+            <textarea class="field__input field__input--area" id="rsvpMessage" name="message" rows="3" data-i18n-attr="placeholder:messagePlaceholder" placeholder="Your wishes, duas &amp; blessings…"></textarea>
+          </div>
+
+          <button class="rsvp__submit" id="rsvpSubmit" type="submit">
+            <span class="rsvp__submit-label" data-i18n="sendRsvp">Send RSVP</span>
+          </button>
+        </form>
+
+        <div class="rsvp__done" id="rsvpDone" hidden>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="32" cy="32" r="27" />
+            <path d="M20 33 l8.5 8.5 L44 25" />
+          </svg>
+          <p class="rsvp__done-note" data-rsvp-success>JazakAllah Khair! Your seat is being saved — we can't wait to celebrate with you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="crest crest--footer" aria-hidden="true">
+          <svg class="crest__lily" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path pathLength="1" d="M24 7 C27 13 27 19 24 25 C21 19 21 13 24 7 Z" />
+            <path pathLength="1" d="M13 12 C17.5 15 21 20 23 26 C16.5 25 12.5 19 13 12 Z" />
+            <path pathLength="1" d="M35 12 C35.5 19 31.5 25 25 26 C27 20 30.5 15 35 12 Z" />
+            <path pathLength="1" d="M9 33 q7.5 4.5 15 0 q7.5 4.5 15 0" />
+            <path pathLength="1" d="M13 39 q5.5 3.5 11 0 q5.5 3.5 11 0" />
+          </svg>
+          <span class="crest__initials" data-initials>M&amp;A</span>
+        </div>
+
+        <p class="footer__closing" data-closing>With love and prayers, we await your presence</p>
+        <p class="footer__names" data-footer-names>Mehjabin &amp; Arman</p>
+        <p class="footer__date" data-footer-date>12 · 02 · 2027 · Dhaka</p>
+
+        <div class="stitch" aria-hidden="true"><span></span><i></i><span></span></div>
+
+        <button class="share-btn" id="shareBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="12" r="2.6" />
+            <circle cx="18" cy="6" r="2.6" />
+            <circle cx="18" cy="18" r="2.6" />
+            <line x1="8.3" y1="10.8" x2="15.7" y2="7.2" />
+            <line x1="8.3" y1="13.2" x2="15.7" y2="16.8" />
+          </svg>
+          <span data-i18n="shareInvitation">Share this Invitation</span>
+        </button>
+
+        <p class="footer__hashtag" data-hashtag>#MehjabinAndArman</p>
+        <p class="footer__credit" data-credit>Crafted with ♥ — Your Studio Name</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating language toggle -->
+  <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to Bangla">
+    <span class="lang-toggle__opt" data-lang-opt="en">EN</span>
+    <span class="lang-toggle__sep" aria-hidden="true">·</span>
+    <span class="lang-toggle__opt" data-lang-opt="bn">বাং</span>
+  </button>
+
+  <!-- Floating music player -->
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Play background music" aria-pressed="false" hidden>
+    <svg class="music-btn__disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="2.4" />
+      <path d="M12 3 v2.2 M12 18.8 V21 M3 12 h2.2 M18.8 12 H21" />
+    </svg>
+    <span class="music-btn__bars" aria-hidden="true">
+      <i></i><i></i><i></i>
+    </span>
+  </button>
+
+  <!-- Floating share pill -->
+  <button class="share-fab" id="shareFab" type="button" aria-label="Share this invitation" data-i18n-aria="shareAria">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="6" cy="12" r="2.6" />
+      <circle cx="18" cy="6" r="2.6" />
+      <circle cx="18" cy="18" r="2.6" />
+      <line x1="8.3" y1="10.8" x2="15.7" y2="7.2" />
+      <line x1="8.3" y1="13.2" x2="15.7" y2="16.8" />
+    </svg>
+    <span data-i18n="share">Share</span>
+  </button>
+
+  <!-- Photo lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="lightbox__close" id="lbClose" type="button" aria-label="Close photo viewer" data-i18n-aria="lbClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6 l12 12 M18 6 l-12 12"/></svg>
+    </button>
+    <figure class="lightbox__stage">
+      <img class="lightbox__img" id="lbImg" src="" alt="" />
+      <figcaption class="lightbox__caption">
+        <span id="lbCaption"></span>
+        <span id="lbCount"></span>
+      </figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" type="button" aria-label="Previous photo" data-i18n-aria="lbPrev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 l-7 7 7 7"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" type="button" aria-label="Next photo" data-i18n-aria="lbNext">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 l7 7 -7 7"/></svg>
+    </button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Link copied to clipboard</div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

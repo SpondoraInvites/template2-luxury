@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="wash" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#c9a86a" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#faf5e9"/>
+      <stop offset="1" stop-color="#f1e7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#wash)"/>
+  <rect x="46" y="46" width="1108" height="1108" fill="none" stroke="#b3893d" stroke-opacity="0.5" stroke-width="2"/>
+  <rect x="62" y="62" width="1076" height="1076" fill="none" stroke="#b3893d" stroke-opacity="0.25" stroke-width="1"/>
+  <circle cx="600" cy="540" r="200" fill="none" stroke="#b3893d" stroke-width="3"/>
+  <circle cx="600" cy="540" r="182" fill="none" stroke="#b3893d" stroke-opacity="0.4" stroke-width="1.4" stroke-dasharray="3 9"/>
+  <g fill="none" stroke="#5f6849" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 420 C630 475 630 530 600 585 C570 530 570 475 600 420 Z"/>
+    <path d="M505 462 C545 490 573 533 585 583 C513 571 480 512 505 462 Z"/>
+    <path d="M695 462 C720 512 687 571 615 583 C627 533 655 490 695 462 Z"/>
+    <path d="M470 640 q65 40 130 0 q65 40 130 0" stroke="#b3893d"/>
+    <path d="M505 700 q48 32 95 0 q48 32 95 0" stroke="#b3893d"/>
+  </g>
+  <text x="600" y="905" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="86" fill="#8d4c3e">M &amp; A</text>
+  <path d="M430 955 C540 925 660 985 770 950" fill="none" stroke="#b06a5b" stroke-width="4" stroke-linecap="round" stroke-opacity="0.75"/>
+</svg>

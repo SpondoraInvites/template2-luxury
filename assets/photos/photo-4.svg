@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#e8c98d" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#e8c98d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7efdd"/>
+      <stop offset="1" stop-color="#ede0c2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#glow)"/>
+  <rect x="46" y="46" width="1108" height="1108" fill="none" stroke="#b3893d" stroke-opacity="0.5" stroke-width="2"/>
+  <!-- Garden foliage silhouettes -->
+  <g fill="none" stroke="#87906d" stroke-width="6" stroke-linecap="round" opacity="0.75">
+    <path d="M60 1200 C90 1050 80 900 120 780"/>
+    <path d="M1140 1200 C1110 1050 1120 900 1080 780"/>
+    <path d="M120 860 c-44 -6 -66 -26 -70 -60 c38 4 60 24 70 60 Z"/>
+    <path d="M1080 900 c44 -14 76 -10 104 8 c-30 22 -70 20 -104 -8 Z"/>
+  </g>
+  <!-- String light -->
+  <path d="M60 220 C360 420 840 420 1140 220" fill="none" stroke="#8a6a2d" stroke-width="5" stroke-linecap="round"/>
+  <!-- Hanging bulbs -->
+  <g stroke="#8a6a2d" stroke-width="3.5">
+    <line x1="205" y1="288" x2="205" y2="360"/>
+    <line x1="380" y1="360" x2="380" y2="430"/>
+    <line x1="600" y1="393" x2="600" y2="468"/>
+    <line x1="820" y1="360" x2="820" y2="430"/>
+    <line x1="995" y1="288" x2="995" y2="360"/>
+  </g>
+  <g fill="#e8c98d" stroke="#b3893d" stroke-width="4">
+    <circle cx="205" cy="392" r="34"/>
+    <circle cx="380" cy="462" r="30"/>
+    <circle cx="600" cy="500" r="38"/>
+    <circle cx="820" cy="462" r="30"/>
+    <circle cx="995" cy="392" r="34"/>
+  </g>
+  <g fill="#fdf3d7">
+    <circle cx="194" cy="382" r="10"/>
+    <circle cx="370" cy="453" r="8"/>
+    <circle cx="588" cy="490" r="11"/>
+    <circle cx="810" cy="453" r="8"/>
+    <circle cx="984" cy="382" r="10"/>
+  </g>
+  <text x="600" y="930" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="72" fill="#8a6a2d">the garden awaits</text>
+  <path d="M420 985 C540 955 660 1005 780 975" fill="none" stroke="#b06a5b" stroke-width="4" stroke-linecap="round" stroke-opacity="0.75"/>
+</svg>

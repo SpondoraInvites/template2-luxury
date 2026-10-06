@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6eeda"/>
+      <stop offset="1" stop-color="#eadcb9"/>
+    </linearGradient>
+    <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9c98f" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#c98d5f" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#dusk)"/>
+  <rect x="46" y="46" width="1108" height="1108" fill="none" stroke="#b3893d" stroke-opacity="0.5" stroke-width="2"/>
+  <!-- Mughal arch doorway -->
+  <path d="M330 1150 L330 560 C330 300 870 300 870 560 L870 1150 Z"
+        fill="#fdf8ec" stroke="#b3893d" stroke-width="8"/>
+  <path d="M362 1150 L362 575 C362 335 838 335 838 575 L838 1150 Z"
+        fill="none" stroke="#b3893d" stroke-opacity="0.45" stroke-width="3" stroke-dasharray="4 10"/>
+  <!-- Hanging lanterns -->
+  <g stroke="#8a6a2d" stroke-width="3.5">
+    <line x1="470" y1="470" x2="470" y2="560"/>
+    <line x1="600" y1="430" x2="600" y2="530"/>
+    <line x1="730" y1="470" x2="730" y2="560"/>
+  </g>
+  <g fill="none" stroke="#8a6a2d" stroke-width="6" stroke-linejoin="round">
+    <path d="M442 560 h56 l10 96 h-76 Z"/>
+    <path d="M572 530 h56 l10 110 h-76 Z"/>
+    <path d="M702 560 h56 l10 96 h-76 Z"/>
+  </g>
+  <g fill="#e8c98d" stroke="#b3893d" stroke-width="3">
+    <path d="M450 572 h40 l8 70 h-56 Z"/>
+    <path d="M580 542 h40 l8 82 h-56 Z"/>
+    <path d="M710 572 h40 l8 70 h-56 Z"/>
+  </g>
+  <!-- Floor roses -->
+  <g fill="#e3b3a2">
+    <circle cx="430" cy="1065" r="15"/><circle cx="510" cy="1105" r="12"/>
+    <circle cx="690" cy="1105" r="12"/><circle cx="770" cy="1065" r="15"/>
+  </g>
+  <g fill="#87906d" stroke="none">
+    <path d="M415 1090 c-16 -3 -24 -10 -26 -24 c15 2 24 10 26 24 Z"/>
+    <path d="M785 1090 c16 -3 24 -10 26 -24 c-15 2 -24 10 -26 24 Z"/>
+  </g>
+  <text x="600" y="905" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="64" fill="#8d4c3e">where we say yes</text>
+</svg>

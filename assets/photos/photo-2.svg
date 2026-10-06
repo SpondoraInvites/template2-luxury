@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f9f3e5"/>
+      <stop offset="1" stop-color="#efe4cb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect x="46" y="46" width="1108" height="1108" fill="none" stroke="#b3893d" stroke-opacity="0.5" stroke-width="2"/>
+  <!-- Floral arch -->
+  <path d="M280 1080 L280 560 C280 320 920 320 920 560 L920 1080" fill="none" stroke="#87906d" stroke-width="10" stroke-linecap="round"/>
+  <g fill="none" stroke="#87906d" stroke-width="5" stroke-linecap="round">
+    <path d="M300 700 c-40 -8 -60 -28 -64 -62 c36 4 56 22 64 62 Z"/>
+    <path d="M320 860 c38 -14 66 -12 90 6 c-26 18 -60 18 -90 -6 Z"/>
+    <path d="M900 700 c40 -8 60 -28 64 -62 c-36 4 -56 22 -64 62 Z"/>
+    <path d="M880 860 c-38 -14 -66 -12 -90 6 c26 18 60 18 90 -6 Z"/>
+  </g>
+  <g fill="#e3b3a2">
+    <circle cx="285" cy="560" r="16"/><circle cx="320" cy="470" r="13"/><circle cx="380" cy="400" r="14"/>
+    <circle cx="470" cy="352" r="13"/><circle cx="600" cy="338" r="16"/><circle cx="730" cy="352" r="13"/>
+    <circle cx="820" cy="400" r="14"/><circle cx="880" cy="470" r="13"/><circle cx="915" cy="560" r="16"/>
+  </g>
+  <g fill="#d8bc7c">
+    <circle cx="300" cy="515" r="9"/><circle cx="350" cy="430" r="8"/><circle cx="425" cy="375" r="8"/>
+    <circle cx="535" cy="342" r="8"/><circle cx="665" cy="342" r="8"/><circle cx="775" cy="375" r="8"/>
+    <circle cx="850" cy="430" r="8"/><circle cx="900" cy="515" r="9"/>
+  </g>
+  <!-- Rings -->
+  <g fill="none" stroke-linecap="round">
+    <circle cx="555" cy="620" r="70" stroke="#b3893d" stroke-width="10"/>
+    <circle cx="645" cy="620" r="70" stroke="#c9a24d" stroke-width="10"/>
+    <path d="M540 545 l15 -30 15 30" stroke="#b3893d" stroke-width="8"/>
+    <path d="M630 545 l15 -30 15 30" stroke="#c9a24d" stroke-width="8"/>
+  </g>
+  <text x="600" y="960" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="72" fill="#8a6a2d">Save the Date</text>
+  <text x="600" y="1030" text-anchor="middle" font-family="Georgia, serif" font-size="40" letter-spacing="6" fill="#8d7d64">12 · 02 · 2027</text>
+</svg>

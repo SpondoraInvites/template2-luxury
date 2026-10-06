@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="wash" cx="0.5" cy="0.42" r="0.72">
+      <stop offset="0" stop-color="#c9a86a" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#c9a86a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#faf5e9"/>
+      <stop offset="1" stop-color="#f0e5cc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#wash)"/>
+  <rect x="46" y="46" width="1108" height="1108" fill="none" stroke="#b3893d" stroke-opacity="0.5" stroke-width="2"/>
+  <rect x="62" y="62" width="1076" height="1076" fill="none" stroke="#b3893d" stroke-opacity="0.25" stroke-width="1"/>
+  <!-- Water lily sprigs -->
+  <g fill="none" stroke="#5f6849" stroke-width="5" stroke-linecap="round" opacity="0.8">
+    <path d="M140 1060 C240 940 330 830 470 760"/>
+    <path d="M1060 1060 C960 940 870 830 730 760"/>
+    <path d="M250 960 c-34 -6 -50 -20 -54 -46 c26 2 42 16 54 46 Z"/>
+    <path d="M950 960 c34 -6 50 -20 54 -46 c-26 2 -42 16 -54 46 Z"/>
+  </g>
+  <!-- Calligraphy names -->
+  <text x="600" y="480" text-anchor="middle" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="200" fill="#8d4c3e">Mehjabin</text>
+  <text x="600" y="600" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="72" fill="#b3893d">&amp;</text>
+  <text x="600" y="790" text-anchor="middle" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="200" fill="#8d4c3e">Arman</text>
+  <!-- Scribble flourish -->
+  <path d="M300 850 C420 810 560 880 680 840 S900 800 940 830" fill="none" stroke="#b06a5b" stroke-width="6" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M340 885 C460 850 580 905 700 870 S900 835 925 860" fill="none" stroke="#b3893d" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.6"/>
+</svg>
