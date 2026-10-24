@@ -78,8 +78,8 @@ artwork, bespoke illustration/animation, multi-page experiences.
 
 Edit **`config.js` only** — motion, intro, petals, names, blessing,
 date, families, story chapters, events, venue, photos, custom sections,
-music, RSVP destination, closing line and studio credit. Every field is
-commented.
+music, RSVP destination, closing line, studio social links and studio
+credit. Every field is commented.
 
 Fields that need small care:
 

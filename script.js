@@ -123,6 +123,8 @@
       lbPrev: "Previous photo",
       lbNext: "Next photo",
       viewPhoto: "View photo",
+      socialInstagram: "Spondora Invites on Instagram",
+      socialFacebook: "Spondora Invites on Facebook",
     },
     bn: {
       documentTitleSuffix: "বিয়ের আমন্ত্রণ",
@@ -193,6 +195,8 @@
       lbPrev: "আগের ছবি",
       lbNext: "পরের ছবি",
       viewPhoto: "ছবিটি দেখুন",
+      socialInstagram: "ইনস্টাগ্রামে স্পন্দোরা ইনভাইটস",
+      socialFacebook: "ফেসবুকে স্পন্দোরা ইনভাইটস",
     },
   };
 
@@ -282,6 +286,17 @@
 
     // The epigraph disappears entirely when left empty.
     $$("[data-epigraph]").forEach(function (el) { el.hidden = !c.epigraph; });
+
+    // Studio social links — set from config; a link hides when left "".
+    $$("[data-social]").forEach(function (el) {
+      var url = c.social && c.social[el.getAttribute("data-social")];
+      if (url) el.href = url;
+      el.hidden = !url;
+    });
+    var socialRow = $(".footer__socials");
+    if (socialRow) {
+      socialRow.hidden = !socialRow.querySelector("[data-social]:not([hidden])");
+    }
 
     // Document title & social meta follow the couple and the language.
     var title = c.couple.name1 + " " + t.nameSep + " " + c.couple.name2 + " \u2014 " + t.documentTitleSuffix;

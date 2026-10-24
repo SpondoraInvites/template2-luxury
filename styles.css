@@ -1483,8 +1483,36 @@ select.field__input {
   color: var(--rose-deep);
 }
 
+.footer__socials {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 26px 0 0;
+}
+
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: var(--gold-deep);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.footer__social svg { width: 20px; height: 20px; }
+
+.footer__social:hover,
+.footer__social:focus-visible {
+  background: var(--gold-pale);
+  color: var(--ink);
+}
+
 .footer__credit {
-  margin: 10px 0 0;
+  margin: 14px 0 0;
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--muted);

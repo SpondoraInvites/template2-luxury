@@ -222,7 +222,15 @@ const INVITE_CONFIG = {
 
   /* ---------- Closing ---------- */
   closing: "With love and prayers, we await your presence",
-  credit: "Crafted with \u2665 \u2014 Your Studio Name",
+  credit: "Crafted with \u2665 \u2014 Spondora Invites",
+
+  /* ---------- Studio social links ----------
+     Icon links shown in the footer above the credit. Leave "" to
+     hide a link (unused icons disappear automatically).             */
+  social: {
+    instagram: "https://www.instagram.com/spondora_invites/",
+    facebook: "https://www.facebook.com/profile.php?id=61594435060189",
+  },
 
   /* ---------- Bangla (বাংলা) ----------
      Mirror of the client-visible content, shown when the visitor
@@ -359,7 +367,7 @@ const INVITE_CONFIG = {
     },
 
     closing: "ভালোবাসা ও দোয়ায়, আপনাদের উপস্থিতির অপেক্ষায়",
-    credit: "\u2665 দিয়ে নির্মিত — Your Studio Name",
+    credit: "♥ দিয়ে নির্মিত — স্পন্দোরা ইনভাইটস",
   },
 };
 
