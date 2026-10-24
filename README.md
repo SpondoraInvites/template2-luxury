@@ -27,7 +27,8 @@ Everything from Signature (৳3,990):
 - Photo gallery with fullscreen lightbox (keyboard + swipe)
 - Venue with embedded map + directions
 - RSVP (WhatsApp and/or Formspree-style endpoint)
-- Background music, shareable link, mobile-first + full desktop layout
+- Background music, share menu (copy link + WhatsApp, Messenger, Telegram,
+  email), mobile-first + full desktop layout
 
 Luxury additions:
 

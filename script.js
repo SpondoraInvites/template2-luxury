@@ -113,6 +113,11 @@
       shareInvitation: "Share this Invitation",
       shareAria: "Share this invitation",
       share: "Share",
+      shareCopy: "Copy link",
+      shareWhatsapp: "WhatsApp",
+      shareMessenger: "Messenger",
+      shareTelegram: "Telegram",
+      shareEmail: "Email",
       shareText: "You\u2019re invited \u2014 {names} \u00B7 {date} \u00B7 {city}",
       calendarDetails: "We would be honoured by your presence. {hashtag}",
       switchTo: "Switch to Bangla",
@@ -185,6 +190,11 @@
       shareInvitation: "এই আমন্ত্রণটি শেয়ার করুন",
       shareAria: "এই আমন্ত্রণটি শেয়ার করুন",
       share: "শেয়ার",
+      shareCopy: "লিংক কপি করুন",
+      shareWhatsapp: "হোয়াটসঅ্যাপ",
+      shareMessenger: "মেসেঞ্জার",
+      shareTelegram: "টেলিগ্রাম",
+      shareEmail: "ইমেইল",
       shareText: "আপনি আমন্ত্রিত — {names} · {date} · {city}",
       calendarDetails: "আপনাদের উপস্থিতিই আমাদের সৌভাগ্য। {hashtag}",
       switchTo: "ইংরেজিতে পরিবর্তন করুন",
@@ -935,29 +945,34 @@
     toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 2600);
   }
 
-  function share() {
-    var data = {
-      title: document.title,
-      text: t.shareText
-        .replace("{names}", c.couple.name1 + " " + t.nameSep + " " + c.couple.name2)
-        .replace("{date}", c.dateDisplay)
-        .replace("{city}", c.city),
-      url: location.origin === "null" || location.protocol === "file:"
-        ? "https://your-invite-link.example"
-        : location.href,
-    };
-    if (navigator.share) {
-      navigator.share(data).catch(function () { /* user dismissed */ });
-      return;
-    }
+  /* Menu-based share, in the spirit of template5-premium: any
+     [data-share-button] paired (via aria-controls) with a [data-share-menu]
+     toggles a tray of channels — copy link, WhatsApp, Messenger, Telegram,
+     email. No backend: each channel composes a prefilled link; copying has
+     a legacy-http fallback and the localized toast as feedback. */
+  var shareLink = function () {
+    return location.origin === "null" || location.protocol === "file:"
+      ? "https://your-invite-link.example"
+      : location.href;
+  };
+
+  var shareText = function () {
+    return t.shareText
+      .replace("{names}", c.couple.name1 + " " + t.nameSep + " " + c.couple.name2)
+      .replace("{date}", c.dateDisplay)
+      .replace("{city}", c.city);
+  };
+
+  function copyLink() {
+    var url = shareLink();
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(
+      navigator.clipboard.writeText(url).then(
         function () { showToast(t.linkCopied); },
-        function () { fallbackCopy(data.url); }
+        function () { fallbackCopy(url); }
       );
       return;
     }
-    fallbackCopy(data.url);
+    fallbackCopy(url);
   }
 
   function fallbackCopy(text) {
@@ -977,10 +992,67 @@
     document.body.removeChild(ta);
   }
 
-  ["#shareBtn", "#shareFab"].forEach(function (sel) {
-    var btn = $(sel);
-    if (btn) btn.addEventListener("click", share);
-  });
+  (function initShareMenus() {
+    var knownActions = {
+      copy: copyLink,
+      whatsapp: function () {
+        window.open("https://wa.me/?text=" + encodeURIComponent(shareText() + "\n" + shareLink()), "_blank", "noopener");
+      },
+      // shortcut: deep link only opens the Messenger app (mobile); the desktop
+      // web dialog needs a registered Facebook app ID
+      messenger: function () {
+        window.open("fb-messenger://share/?link=" + encodeURIComponent(shareLink()), "_blank", "noopener");
+      },
+      telegram: function () {
+        window.open("https://t.me/share/url?url=" + encodeURIComponent(shareLink()) + "&text=" + encodeURIComponent(shareText()), "_blank", "noopener");
+      },
+      email: function () {
+        location.href = "mailto:?subject=" + encodeURIComponent(shareText()) + "&body=" + encodeURIComponent(shareText() + "\n" + shareLink());
+      },
+    };
+
+    var pairs = [];
+    $$("[data-share-button]").forEach(function (button) {
+      var menu = document.getElementById(button.getAttribute("aria-controls") || "");
+      if (!menu) return;
+      menu.hidden = false; // JS is healthy — the class system takes over from [hidden]
+
+      function setOpen(open) {
+        menu.classList.toggle("open", open);
+        button.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      button.addEventListener("click", function () {
+        setOpen(!menu.classList.contains("open"));
+      });
+      document.addEventListener("click", function (e) {
+        if (menu.classList.contains("open") &&
+            !menu.contains(e.target) &&
+            (!e.target.closest || e.target.closest("[data-share-button]") !== button)) {
+          setOpen(false);
+        }
+      });
+      Object.keys(knownActions).forEach(function (key) {
+        var b = menu.querySelector('[data-share="' + key + '"]');
+        if (!b) return;
+        b.addEventListener("click", function () {
+          knownActions[key]();
+          if (key !== "copy") setOpen(false);
+        });
+      });
+      pairs.push({ button: button, menu: menu, setOpen: setOpen });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      pairs.forEach(function (pair) {
+        if (pair.menu.classList.contains("open")) {
+          pair.setOpen(false);
+          pair.button.focus();
+        }
+      });
+    });
+  })();
 
   // Floating share pill appears after the hero.
   var fab = $("#shareFab");

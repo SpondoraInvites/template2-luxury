@@ -1615,8 +1615,19 @@ select.field__input {
   position: fixed;
   left: 50%;
   bottom: calc(18px + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%);
   z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.share-fab.is-visible { opacity: 1; pointer-events: auto; }
+
+.share-fab__button {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -1630,16 +1641,84 @@ select.field__input {
   border: 1px solid var(--line);
   border-radius: 999px;
   box-shadow: 0 10px 30px -8px rgba(70, 57, 43, 0.4);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease, background 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.share-fab svg { width: 16px; height: 16px; }
+.share-fab__button svg { width: 16px; height: 16px; }
 
-.share-fab.is-visible { opacity: 1; pointer-events: auto; }
+.share-fab__button:hover,
+.share-fab__button:focus-visible { background: var(--gold-pale); }
 
-.share-fab:hover { background: var(--gold-pale); }
+/* Share menu — a pill tray of channels (copy / whatsapp / messenger /
+   telegram / email). It overlays as a dropdown under the footer button and
+   as a floating tray above the share pill, so opening never reflows the
+   page. Starts [hidden]; script.js clears that once JS is healthy. */
+.share { position: relative; display: inline-flex; }
+
+.share-menu {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  width: max-content;
+  max-width: min(92vw, 420px);
+  padding: 0.7rem;
+  background: rgba(253, 250, 242, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 12px 32px -10px rgba(70, 57, 43, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -8px);
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0s linear 0.28s;
+  z-index: 55;
+}
+
+.share-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.share-menu button {
+  appearance: none;
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.6em 1.2em;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.share-menu button:hover,
+.share-menu button:focus-visible {
+  background: var(--gold-pale);
+  color: var(--ink);
+}
+
+/* Floating variant — the tray sits above the pill, bottom-anchored */
+.share-menu--float {
+  top: auto;
+  bottom: calc(100% + 0.6rem);
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  border-radius: 24px;
+  transform: translate(-50%, 8px);
+}
+
+.share-menu--float.open { transform: translate(-50%, 0); }
 
 .toast {
   position: fixed;
