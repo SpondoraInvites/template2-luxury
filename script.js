@@ -891,6 +891,12 @@
       var data = collect();
       var submitBtn = $("#rsvpSubmit");
       if (submitBtn) submitBtn.disabled = true;
+      // Reserve the fallback tab while the submit is still a user gesture;
+      // browsers may block a WhatsApp tab opened after an async request fails.
+      var whatsappWindow = cfg.rsvp.endpoint && cfg.rsvp.whatsapp
+        ? window.open("", "_blank")
+        : null;
+      if (whatsappWindow) whatsappWindow.opener = null;
 
       var finish = function (msg) {
         if (submitBtn) {
@@ -911,10 +917,14 @@
             if (!r.ok) throw new Error("HTTP " + r.status);
             return r.json ? r.json() : {};
           })
-          .then(function () { finish(c.rsvp.successNote); })
+          .then(function () {
+            if (whatsappWindow) whatsappWindow.close();
+            finish(c.rsvp.successNote);
+          })
           .catch(function () {
             if (cfg.rsvp.whatsapp) {
-              window.open(whatsappUrl(data), "_blank", "noopener");
+              if (whatsappWindow) whatsappWindow.location.href = whatsappUrl(data);
+              else window.open(whatsappUrl(data), "_blank", "noopener");
               finish(t.rsvpWaOpened);
             } else {
               finish(t.rsvpError);
