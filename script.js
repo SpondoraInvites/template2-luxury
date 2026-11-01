@@ -513,6 +513,7 @@
     lbRender();
     lbLastFocus = document.activeElement;
     lb.hidden = false;
+    document.body.classList.add("lightbox-open");
     document.body.style.overflow = "hidden";
     void lb.offsetWidth;
     lb.classList.add("is-open");
@@ -522,6 +523,7 @@
   function closeLightbox() {
     if (!lb || lb.hidden) return;
     lb.classList.remove("is-open");
+    document.body.classList.remove("lightbox-open");
     document.body.style.overflow = "";
     setTimeout(function () { lb.hidden = true; }, 320);
     if (lbLastFocus && lbLastFocus.focus) lbLastFocus.focus();

@@ -1543,6 +1543,7 @@ select.field__input {
 }
 
 .lang-toggle[hidden] { display: none; }
+body.lightbox-open #langToggle { visibility: hidden; pointer-events: none; }
 
 .lang-toggle__opt { opacity: 0.45; transition: opacity 0.25s ease; }
 .lang-toggle__opt.is-active { opacity: 1; }
