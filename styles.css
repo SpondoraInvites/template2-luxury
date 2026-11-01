@@ -1874,10 +1874,19 @@ html[lang="bn"] {
   --sans: "Anek Bangla", "Jost", system-ui, sans-serif;
 }
 
-html[lang="bn"] .eyebrow { letter-spacing: 0.14em; }
-html[lang="bn"] .hero__place { letter-spacing: 0.14em; }
-html[lang="bn"] .hero__scroll span { letter-spacing: 0.1em; }
+html[lang="bn"] * { letter-spacing: normal; }
+
+html[lang="bn"] .eyebrow { font-size: 14.5px; letter-spacing: 0.14em; }
+html[lang="bn"] .intro__eyebrow { font-size: 13.5px; letter-spacing: 0.14em; }
+html[lang="bn"] .hero__place { font-size: 15px; letter-spacing: 0.14em; }
+html[lang="bn"] .hero__scroll span { font-size: 13.5px; letter-spacing: 0.1em; }
 html[lang="bn"] .cd-cell__label { letter-spacing: 0.08em; }
+html[lang="bn"] .row dt { font-size: 12.5px; letter-spacing: 0.08em; }
+html[lang="bn"] .gallery__hint { font-size: 15px; letter-spacing: 0.08em; }
+html[lang="bn"] .custom__quote-source { font-size: 13.5px; letter-spacing: 0.08em; }
+html[lang="bn"] .c-card__kicker { font-size: 12.5px; letter-spacing: 0.08em; }
+html[lang="bn"] .field__label { font-size: 13px; letter-spacing: 0.08em; }
+html[lang="bn"] .field__optional { font-size: 12px; letter-spacing: 0.08em; }
 
 html[lang="bn"] .section-title { font-weight: 400; } /* Tiro Bangla ships 400 only */
 html[lang="bn"] .script-amp { font-style: normal; }
