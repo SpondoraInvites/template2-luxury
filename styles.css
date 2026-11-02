@@ -735,6 +735,14 @@ body.is-live .scribble .scribble__pass--2 {
   color: var(--muted);
 }
 
+.countdown__status {
+  margin: 34px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(30px, 8.5vw, 38px);
+  line-height: 1.2;
+  color: var(--rose-deep);
+}
+
 /* ============ Our Story — stitched timeline ============ */
 .story__timeline {
   position: relative;

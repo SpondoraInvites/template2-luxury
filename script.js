@@ -72,6 +72,10 @@
       minutes: "Minutes",
       seconds: "Seconds",
       countdownAria: "Countdown to the wedding",
+      today: "Today",
+      married: "Married",
+      eyebrowToday: "The Day Is Here",
+      eyebrowMarried: "Happily Ever After",
       storyEyebrow: "How It Began",
       storyTitle: "Our <em>Story</em>",
       whenWhere: "When & Where",
@@ -149,6 +153,10 @@
       minutes: "মিনিট",
       seconds: "সেকেন্ড",
       countdownAria: "বিয়ের কাউন্টডাউন",
+      today: "আজ",
+      married: "বিবাহিত",
+      eyebrowToday: "সেই দিন এসে গেছে",
+      eyebrowMarried: "শুভ বিবাহ সম্পন্ন",
       storyEyebrow: "গল্পের শুরু",
       storyTitle: "আমাদের <em>গল্প</em>",
       whenWhere: "কখন ও কোথায়",
@@ -684,6 +692,9 @@
   /* ============ 9. Countdown ============ */
   var target = new Date(cfg.weddingDateTime).getTime();
   var cd = { d: $("#cdDays"), h: $("#cdHours"), m: $("#cdMinutes"), s: $("#cdSeconds") };
+  var cdGrid = $(".countdown__grid"), cdNote = $("[data-countdown-note]");
+  var cdStatus = $("[data-countdown-status]");
+  var cdEyebrow = $('[data-i18n="saveTheDate"]'), cdTitle = $('[data-i18n-html="countdownTitle"]');
   var refreshCountdown = null;
 
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
@@ -699,13 +710,49 @@
     el.classList.add("is-settling");
   }
 
+  var venueTz = (cfg.events && cfg.events[0] && cfg.events[0].calTz) || null;
+  function dayKey(ms) {
+    var d = new Date(ms);
+    if (venueTz && typeof Intl !== "undefined" && Intl.DateTimeFormat) {
+      var parts = {};
+      new Intl.DateTimeFormat("en-US", { timeZone: venueTz, year: "numeric", month: "2-digit", day: "2-digit" })
+        .formatToParts(d).forEach(function (part) { parts[part.type] = part.value; });
+      return parts.year + "-" + parts.month + "-" + parts.day;
+    }
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+  }
+
+  function showState(key) {
+    if (cdStatus) {
+      cdStatus.textContent = t[key];
+      cdStatus.hidden = false;
+    }
+    if (cdEyebrow) cdEyebrow.textContent = key === "today" ? t.eyebrowToday : t.eyebrowMarried;
+    if (cdTitle) cdTitle.hidden = true;
+    if (cdGrid) cdGrid.hidden = true;
+    if (cdNote) cdNote.hidden = true;
+  }
+
+  function showCountdown() {
+    if (cdStatus) cdStatus.hidden = true;
+    if (cdEyebrow) cdEyebrow.textContent = t.saveTheDate;
+    if (cdTitle) cdTitle.hidden = false;
+    if (cdGrid) cdGrid.hidden = false;
+    if (cdNote) cdNote.hidden = false;
+  }
+
   function tick() {
-    var diff = target - Date.now();
-    var done = diff <= 0;
-    setNum(cd.d, done ? L("00") : L(pad(Math.floor(diff / 864e5))));
-    setNum(cd.h, done ? L("00") : L(pad(Math.floor(diff / 36e5) % 24)));
-    setNum(cd.m, done ? L("00") : L(pad(Math.floor(diff / 6e4) % 60)));
-    setNum(cd.s, done ? L("00") : L(pad(Math.floor(diff / 1e3) % 60)));
+    var now = Date.now();
+    var diff = target - now;
+    if (diff > 0) {
+      showCountdown();
+      setNum(cd.d, L(pad(Math.floor(diff / 864e5))));
+      setNum(cd.h, L(pad(Math.floor(diff / 36e5) % 24)));
+      setNum(cd.m, L(pad(Math.floor(diff / 6e4) % 60)));
+      setNum(cd.s, L(pad(Math.floor(diff / 1e3) % 60)));
+    } else {
+      showState(dayKey(now) === dayKey(target) ? "today" : "married");
+    }
   }
   if (!isNaN(target)) {
     refreshCountdown = tick;
@@ -828,7 +875,7 @@
       eventsWrap.innerHTML = c.events.map(function (ev, i) {
         return (
           '<label class="choice__opt">' +
-          '<input type="checkbox" name="events" value="' + esc(ev.name) + '" ' + (i === 0 ? "" : "checked") + " />" +
+          '<input type="checkbox" name="events" value="' + esc(ev.name) + '" ' + (i === 0 ? "checked" : "") + " />" +
           "<span>" + esc(ev.name) + "</span>" +
           "</label>"
         );
